@@ -1,10 +1,10 @@
 import Stats from "./Stats";
 import Stopwatch from "./Stopwatch";
-const Header = ({totalPlayers,title}) => {
+const Header = () => {
     return (
       <header>
-        <Stats players={totalPlayers} />
-        <h1>{title}</h1>
+        <Stats />
+        <h1>QA Scoreboard</h1>
         <Stopwatch />
       </header>
     );

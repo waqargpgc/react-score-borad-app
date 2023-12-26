@@ -1,6 +1,7 @@
 import React, { Component  } from 'react';
+import { Provider } from './Context';
 import Header from './Header';
-import Player from './Player';
+import PlayerList from './PlayerList';
 import AddPlayerForm from './AddPlayerForm';
   class App extends Component {
     state = {
@@ -33,6 +34,7 @@ import AddPlayerForm from './AddPlayerForm';
       ]
     };
     handleRemovePlayers = (id) => {
+      debugger
       this.setState( prevState => {
         return {
           players : prevState.players.filter(p => p.id !== id)
@@ -67,15 +69,20 @@ import AddPlayerForm from './AddPlayerForm';
     }
     render () {
       const highestScore = this.getHighestScore();
-      console.log(highestScore)
       return (
-        <div className="scoreboard">
-          <Header title="QA Scoreboard" totalPlayers={this.state.players} />    
-          {this.state.players.map((player,index) => (
-            <Player index={index} highestScore={highestScore} name={player.name} id={player.id} score = {player.score} key={player.id.toString()} removePlayer={this.handleRemovePlayers} changeScore={this.handleScoreChange} />
-          ))}
-          <AddPlayerForm addPlayer={this.handleAddPlayer} />
+        <Provider value={{
+          players: this.state.players,
+          actions: {
+            changeScore : this.handleScoreChange,
+            removePlayer: this.handleRemovePlayers
+          }
+        }}>
+          <div className="scoreboard">
+          <Header />    
+            <PlayerList highestScore={highestScore} />
+            <AddPlayerForm addPlayer={this.handleAddPlayer} />
         </div>
+        </Provider>
       );
   }
   
