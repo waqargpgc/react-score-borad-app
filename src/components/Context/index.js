@@ -42,13 +42,21 @@ export class Provider extends Component {
       };
     });
   };
+  // handleScoreChange = (index, delta) => {
+  //   console.log("Change score called", index, delta);
+  //   this.setState({
+  //     score: (this.state.players[index].score += delta),
+  //   });
+  // };
   handleScoreChange = (index, delta) => {
-    console.log("Change score called", index, delta);
-    this.setState({
-      score: (this.state.players[index].score += delta),
+    this.setState((prevState) => {
+      const updatedPlayers = [...prevState.players];
+      updatedPlayers[index].score += delta;
+      return {
+        players: updatedPlayers,
+      };
     });
   };
-
 
   privPlayerId = 4;
   handleAddPlayer = (name) => {
