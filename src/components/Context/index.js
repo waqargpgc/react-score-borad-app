@@ -90,3 +90,6 @@ export class Provider extends Component {
     );
   }
 }
+
+
+  // "homepage": "https://waqargpgc.github.io/react-score-borad-app",
