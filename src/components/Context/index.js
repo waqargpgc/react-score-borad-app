@@ -57,7 +57,6 @@ export class Provider extends Component {
       };
     });
   };
-
   privPlayerId = 4;
   handleAddPlayer = (name) => {
     this.setState((prevState) => {
