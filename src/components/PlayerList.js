@@ -1,14 +1,14 @@
 import { Consumer } from "./Context";
 import  Player  from './Player';
 
-const PlayerList = ({highestScore}) => {
+const PlayerList = () => {
 
     return ( 
         <Consumer>
            { context => (
             <>
             { context.players.map( (player, index) => (
-                <Player index={index} highestScore={highestScore} key={player.id.toString()}  />
+                <Player index={index} key={player.id.toString()}  />
             ))}
             </>
            )}
